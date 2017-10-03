@@ -1,6 +1,6 @@
 Welcome to the Longboat!
 
-Created by @github.com/keerthik and @github.com/piazzatron
+Created by [@keerthik](https://github.com/keerthik) and [@piazzatron](https://github.com/piazzatron).
 
 # Setup
 // Test locally
