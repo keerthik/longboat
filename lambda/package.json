@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.130.0",
-    "eslint": "^4.8.0",
     "flow-bin": "^0.56.0"
   },
   "devDependencies": {

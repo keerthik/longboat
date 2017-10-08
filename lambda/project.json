@@ -1,0 +1,8 @@
+{
+  "name": "longboat",
+  "description": "sailing the seas of the I-O-Ts",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::974673026662:role/longboat_lambda_function",
+  "environment": {}
+}
