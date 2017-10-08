@@ -6,7 +6,9 @@ Created by [@keerthik](https://github.com/keerthik) and [@piazzatron](https://gi
 * The main live branch is 'mainriver', not 'master'. Don't fuck with 'mainriver' unless you intend to deploy live
 
 # Setup
-We use [Jekyll](http://jekyllrb.com/) for the static site. Currently using vanilla css/html/js. Follow jekyllrb install instructions
+- We use [Jekyll](http://jekyllrb.com/) for the static site. Currently using vanilla css/html/js. Follow jekyllrb install instructions
+- We use [npm] for dependency management on the JS side. So install that too
+- Install flow (JS static typechecker) globally: `npm install -g flow-bin` 
 
 ## Run Locally
 Navigate to `./source` and run
