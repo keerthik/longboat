@@ -33,6 +33,8 @@ When upgrading to involve React, consider [this post](https://medium.com/@alliza
 - Plant watering notifications
 
 # Idea Dump
+- Incentivized Housekeeping/Chores Tracker/Ticker
+	- Kudos, points, history-tracking, continuous ticker for chores done in longboat
 - CV Brown/Normal (:O) recognition
 - Smart Light Integration
 - News feed/reminders: "Roy was last watered 12 days ago"
