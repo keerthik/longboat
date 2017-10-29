@@ -9,6 +9,7 @@ Created by [@keerthik](https://github.com/keerthik) and [@piazzatron](https://gi
 - We use [Jekyll](http://jekyllrb.com/) for the static site. Currently using vanilla css/html/js. Follow jekyllrb install instructions
 - We use [npm] for dependency management on the JS side. So install that too
 - We deploy our lambda functions using [Apex CLI]
+	- We deploy by running `apex deploy` from /lambda
 - Install flow (JS static typechecker) globally: `npm install -g flow-bin` 
 
 ## Run Locally
