@@ -14,7 +14,7 @@ exports.handle = (event, context, callback) => {
             if (err) {
                 callback(err, null);
             } else {
-                callback(null, data);
+                callback(null, data.Item);
             }
         }); 
     } else {
@@ -23,7 +23,7 @@ exports.handle = (event, context, callback) => {
             if (err) {
                 callback(err, null);
             } else {
-                callback(null, data);
+                callback(null, data.Items);
             }
         });
     }

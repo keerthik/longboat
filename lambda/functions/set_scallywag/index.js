@@ -14,7 +14,6 @@ exports.handle = (event, context, callback) => {
         Item: {
             name: user.name,
             UUID: user.UUID,
-            home: user.home,
             host: user.host,
             atHome: user.atHome
         }
