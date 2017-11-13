@@ -1,6 +1,7 @@
-_site/
 ._*
 */._*
 .DS_Store
-*/node_modules
+site/node_modules
+.vscode
+lambda/node_modules
 
