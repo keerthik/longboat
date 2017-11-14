@@ -18947,8 +18947,9 @@ class UserListContainer extends React.Component {
                 yield api_1.setUser(user);
                 console.log(`Successfully toggled user: ${user.UUID}`);
                 this.setState((prevState) => {
-                    const state = prevState;
-                    prevState.users[user.UUID] = user;
+                    const state = Object.assign({}, prevState);
+                    state.users[user.UUID] = user;
+                    return state;
                 });
             }
             catch (err) {
