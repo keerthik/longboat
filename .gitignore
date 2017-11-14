@@ -4,4 +4,4 @@
 site/node_modules
 .vscode
 lambda/node_modules
-
+site/src/dist/**

@@ -7,6 +7,7 @@ const UUID = () => {
 };
 
 // TODO: Add user flow types here
+// TODO: get some ES6 in here and spread the Item to allow for arbitrary params
 exports.handle = (event, context, callback) => {
     const user = event.user;
     const params = {
@@ -15,9 +16,12 @@ exports.handle = (event, context, callback) => {
             name: user.name,
             UUID: user.UUID,
             host: user.host,
-            atHome: user.atHome
+            atHome: user.atHome,
+            imageURI: user.imageURI
         }
     };
+
+    console.log(`Putting event: ${JSON.stringify(params)}`);
 
     docClient.put(params, (err, data) => {
         if (err) {
