@@ -19979,25 +19979,24 @@ const style = {
         display: 'flex',
         flex: 1,
         flexDirection: "row",
-        paddingLeft: "20px",
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "center"
     },
     name: {
-        display: "flex",
-        flex: 1,
-        color: "#d3d3d3"
+        // display: "flex",
+        // flex:1,
+        color: "#d3d3d3",
+        whiteSpace: "pre-wrap"
     },
-    homeStatus: {
-        display: "flex",
-        flex: 1
-    },
+    homeStatus: {},
     homeColor: "#77ff6b",
     awayColor: "#d3d3d3"
 };
 const UserCardBottom = (props) => (React.createElement(CardSection_1.default, { style: style.card },
-    React.createElement("div", { style: style.name }, props.name),
-    React.createElement("div", { style: Object.assign({}, style.homeStatus, { color: (props.atHome ? style.homeColor : style.awayColor) }) }, props.atHome ? "Home" : "Away")));
+    React.createElement("span", { style: style.name },
+        props.name,
+        " is "),
+    React.createElement("span", { style: Object.assign({}, style.homeStatus, { color: (props.atHome ? style.homeColor : style.awayColor) }) }, props.atHome ? "home." : "away.")));
 exports.default = UserCardBottom;
 
 
