@@ -1,21 +1,24 @@
 import * as React from 'react';
 import Card from "./Card";
 import CardSection from "./CardSection";
+import UserCardBottom from "./UserCardBottom";
 import IUser from "../interfaces/IUser";
 
 interface IUserProps extends IUser {
     onUserClick:(UUID: string) => void,
 }
 
-const User = (props: IUserProps) => {
+const UserCard = (props: IUserProps) => {
     const style = {
         height: "300px",
         width: "300px",
         backgroundColor: "#e1e5ed",
+        fontFamily: "comfortaa",
+        fontSize: "30px"
     };
 
     const topStyle = {
-        flex: 2,
+        flex: 3,
         backgroundImage: (props.imageURI ? `url(${props.imageURI})` : null),
         backgroundSize: "100%",
     }
@@ -24,13 +27,9 @@ const User = (props: IUserProps) => {
         <Card style={style} onCardClick={() => {props.onUserClick(props.UUID)}}>
             <CardSection style={topStyle}>
             </CardSection> 
-
-            <CardSection style={{backgroundColor: "white", flex: 1}}> 
-                <div style={{display: "inline"}}>{props.name}</div>
-                <div style={{ display: "inline" }}>{props.atHome ? "Home" : "Away"}</div>
-            </CardSection>
+            <UserCardBottom name={props.name} atHome={props.atHome}/>
         </Card>
     )
 };
 
-export default User;
+export default UserCard;

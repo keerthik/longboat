@@ -1,7 +1,7 @@
 import * as React from "react";
 import { getUsers, setUser } from "../api";
 import IUser from "../interfaces/IUser";
-import User from "../components/User";
+import UserCard from "../components/UserCard";
 interface IUserListContainerState {
     users: {[UUID:string]: IUser};
     loading: boolean;
@@ -70,7 +70,7 @@ class UserListContainer extends React.Component<{}, IUserListContainerState> {
     renderUsers() {
         return (Object.keys(this.state.users)
             .map((UUID) => (this.state.users[UUID]))
-            .map((u) => (<User {...u} onUserClick={this.toggleUserState} key={u.UUID}/>)));
+            .map((u) => (<UserCard {...u} onUserClick={this.toggleUserState} key={u.UUID}/>)));
     }
     
 

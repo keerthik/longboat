@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 const style = {
-    boxShadow: "0px 5px 35px 4px #afafaf",
+    boxShadow: "0px 3px 15px 4px #afafaf",
     borderRadius: "10px",
-    border: "1px solid",
-    borderBottomWidth: "3px",
+    border: "0px solid",
+    borderBottomWidth: "2px",
     borderColor: "#9b9da3",
     display: "inline-flex",
     margin: "20px",
