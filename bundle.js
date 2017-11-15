@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/longboat/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(16);
-var isBuffer = __webpack_require__(38);
+var isBuffer = __webpack_require__(39);
 
 /*global toString:true*/
 
@@ -571,9 +571,9 @@ process.umask = function() { return 0; };
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(22);
-} else {
   module.exports = __webpack_require__(23);
+} else {
+  module.exports = __webpack_require__(24);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -878,7 +878,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(40);
+var normalizeHeaderName = __webpack_require__(41);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -987,7 +987,7 @@ module.exports = defaults;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(6);
   var warning = __webpack_require__(7);
-  var ReactPropTypesSecret = __webpack_require__(24);
+  var ReactPropTypesSecret = __webpack_require__(25);
   var loggedTypeFailures = {};
 }
 
@@ -1286,7 +1286,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(27);
+var isTextNode = __webpack_require__(28);
 
 /*eslint-disable no-bitwise */
 
@@ -1369,12 +1369,12 @@ module.exports = function bind(fn, thisArg) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(41);
-var buildURL = __webpack_require__(43);
-var parseHeaders = __webpack_require__(44);
-var isURLSameOrigin = __webpack_require__(45);
+var settle = __webpack_require__(42);
+var buildURL = __webpack_require__(44);
+var parseHeaders = __webpack_require__(45);
+var isURLSameOrigin = __webpack_require__(46);
 var createError = __webpack_require__(18);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(46);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(47);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1471,7 +1471,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(47);
+      var cookies = __webpack_require__(48);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -1556,7 +1556,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(42);
+var enhanceError = __webpack_require__(43);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -1620,14 +1620,29 @@ module.exports = Cancel;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const ReactDOM = __webpack_require__(25);
-const UserListContainer_1 = __webpack_require__(34);
+const style = {
+    flex: 1,
+};
+const CardSection = (props) => (React.createElement("div", { style: Object.assign({}, style, props.style) }, props.children));
+exports.default = CardSection;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(2);
+const ReactDOM = __webpack_require__(26);
+const UserListContainer_1 = __webpack_require__(35);
 ReactDOM.render(React.createElement(UserListContainer_1.default, null), document.getElementById("App"));
 console.log('YIPPIE');
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1656,7 +1671,7 @@ version:"16.1.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurren
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3007,7 +3022,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3026,7 +3041,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3064,15 +3079,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(26);
+  module.exports = __webpack_require__(27);
 } else {
-  module.exports = __webpack_require__(29);
+  module.exports = __webpack_require__(30);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3306,7 +3321,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.1.0",r
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3321,7 +3336,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.1.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(28);
+var isNode = __webpack_require__(29);
 
 /**
  * @param {*} object The object to check.
@@ -3334,7 +3349,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3362,7 +3377,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3394,8 +3409,8 @@ var containsNode = __webpack_require__(14);
 var focusNode = __webpack_require__(15);
 var emptyObject = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(9);
-var hyphenateStyleName = __webpack_require__(30);
-var camelizeStyleName = __webpack_require__(32);
+var hyphenateStyleName = __webpack_require__(31);
+var camelizeStyleName = __webpack_require__(33);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -18728,7 +18743,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18743,7 +18758,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(31);
+var hyphenate = __webpack_require__(32);
 
 var msPattern = /^ms-/;
 
@@ -18770,7 +18785,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18806,7 +18821,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18821,7 +18836,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(33);
+var camelize = __webpack_require__(34);
 
 var msPattern = /^-ms-/;
 
@@ -18849,7 +18864,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18884,7 +18899,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18899,8 +18914,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const api_1 = __webpack_require__(35);
-const User_1 = __webpack_require__(56);
+const api_1 = __webpack_require__(36);
+const UserCard_1 = __webpack_require__(57);
 class UserListContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -18963,7 +18978,7 @@ class UserListContainer extends React.Component {
     renderUsers() {
         return (Object.keys(this.state.users)
             .map((UUID) => (this.state.users[UUID]))
-            .map((u) => (React.createElement(User_1.default, Object.assign({}, u, { onUserClick: this.toggleUserState, key: u.UUID })))));
+            .map((u) => (React.createElement(UserCard_1.default, Object.assign({}, u, { onUserClick: this.toggleUserState, key: u.UUID })))));
     }
     render() {
         return (React.createElement("div", null, this.state.loading ? this.renderLoading() : this.renderUsers()));
@@ -18973,7 +18988,7 @@ exports.default = UserListContainer;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18987,20 +19002,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const axios_1 = __webpack_require__(36);
-const Constants_1 = __webpack_require__(55);
+const axios_1 = __webpack_require__(37);
+const Constants_1 = __webpack_require__(56);
 exports.getUsers = () => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.get(Constants_1.LONGBOAT_API_ENDPOINT)); });
 exports.setUser = (user) => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.post(Constants_1.LONGBOAT_API_ENDPOINT, { user: Object.assign({}, user, { house: "longboat" }) })); });
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(37);
+module.exports = __webpack_require__(38);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19008,7 +19023,7 @@ module.exports = __webpack_require__(37);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(16);
-var Axios = __webpack_require__(39);
+var Axios = __webpack_require__(40);
 var defaults = __webpack_require__(8);
 
 /**
@@ -19043,14 +19058,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(20);
-axios.CancelToken = __webpack_require__(53);
+axios.CancelToken = __webpack_require__(54);
 axios.isCancel = __webpack_require__(19);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(54);
+axios.spread = __webpack_require__(55);
 
 module.exports = axios;
 
@@ -19059,7 +19074,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 /*!
@@ -19086,7 +19101,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19094,8 +19109,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(8);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(48);
-var dispatchRequest = __webpack_require__(49);
+var InterceptorManager = __webpack_require__(49);
+var dispatchRequest = __webpack_require__(50);
 
 /**
  * Create a new instance of Axios
@@ -19172,7 +19187,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19191,7 +19206,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19224,7 +19239,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19252,7 +19267,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19327,7 +19342,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19387,7 +19402,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19462,7 +19477,7 @@ module.exports = (
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19505,7 +19520,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19565,7 +19580,7 @@ module.exports = (
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19624,18 +19639,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(50);
+var transformData = __webpack_require__(51);
 var isCancel = __webpack_require__(19);
 var defaults = __webpack_require__(8);
-var isAbsoluteURL = __webpack_require__(51);
-var combineURLs = __webpack_require__(52);
+var isAbsoluteURL = __webpack_require__(52);
+var combineURLs = __webpack_require__(53);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -19717,7 +19732,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19744,7 +19759,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19765,7 +19780,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19786,7 +19801,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19850,7 +19865,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19884,43 +19899,13 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LONGBOAT_API_ENDPOINT = "https://3m6rbbyc7c.execute-api.us-east-1.amazonaws.com/prod/longboat/scallywags/";
-
-
-/***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(2);
-const Card_1 = __webpack_require__(57);
-const CardSection_1 = __webpack_require__(58);
-const User = (props) => {
-    const style = {
-        height: "300px",
-        width: "300px",
-        backgroundColor: "#e1e5ed",
-    };
-    const topStyle = {
-        flex: 2,
-        backgroundImage: (props.imageURI ? `url(${props.imageURI})` : null),
-        backgroundSize: "100%",
-    };
-    return (React.createElement(Card_1.default, { style: style, onCardClick: () => { props.onUserClick(props.UUID); } },
-        React.createElement(CardSection_1.default, { style: topStyle }),
-        React.createElement(CardSection_1.default, { style: { backgroundColor: "white", flex: 1 } },
-            React.createElement("div", { style: { display: "inline" } }, props.name),
-            React.createElement("div", { style: { display: "inline" } }, props.atHome ? "Home" : "Away"))));
-};
-exports.default = User;
+exports.LONGBOAT_API_ENDPOINT = "https://3m6rbbyc7c.execute-api.us-east-1.amazonaws.com/prod/longboat/scallywags/";
 
 
 /***/ }),
@@ -19931,11 +19916,42 @@ exports.default = User;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
+const Card_1 = __webpack_require__(58);
+const CardSection_1 = __webpack_require__(21);
+const UserCardBottom_1 = __webpack_require__(59);
+const UserCard = (props) => {
+    const style = {
+        height: "300px",
+        width: "300px",
+        backgroundColor: "#e1e5ed",
+        fontFamily: "comfortaa",
+        fontSize: "30px"
+    };
+    const topStyle = {
+        flex: 3,
+        backgroundImage: (props.imageURI ? `url(${props.imageURI})` : null),
+        backgroundSize: "100%",
+    };
+    return (React.createElement(Card_1.default, { style: style, onCardClick: () => { props.onUserClick(props.UUID); } },
+        React.createElement(CardSection_1.default, { style: topStyle }),
+        React.createElement(UserCardBottom_1.default, { name: props.name, atHome: props.atHome })));
+};
+exports.default = UserCard;
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(2);
 const style = {
-    boxShadow: "0px 5px 35px 4px #afafaf",
+    boxShadow: "0px 3px 15px 4px #afafaf",
     borderRadius: "10px",
-    border: "1px solid",
-    borderBottomWidth: "3px",
+    border: "0px solid",
+    borderBottomWidth: "2px",
     borderColor: "#9b9da3",
     display: "inline-flex",
     margin: "20px",
@@ -19949,18 +19965,40 @@ exports.default = Card;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
+const CardSection_1 = __webpack_require__(21);
 const style = {
-    flex: 1,
+    card: {
+        backgroundColor: "white",
+        display: 'flex',
+        flex: 1,
+        flexDirection: "row",
+        paddingLeft: "20px",
+        alignItems: "center",
+        justifyContent: "space-evenly"
+    },
+    name: {
+        display: "flex",
+        flex: 1,
+        color: "#d3d3d3"
+    },
+    homeStatus: {
+        display: "flex",
+        flex: 1
+    },
+    homeColor: "#77ff6b",
+    awayColor: "#d3d3d3"
 };
-const CardSection = (props) => (React.createElement("div", { style: Object.assign({}, style, props.style) }, props.children));
-exports.default = CardSection;
+const UserCardBottom = (props) => (React.createElement(CardSection_1.default, { style: style.card },
+    React.createElement("div", { style: style.name }, props.name),
+    React.createElement("div", { style: Object.assign({}, style.homeStatus, { color: (props.atHome ? style.homeColor : style.awayColor) }) }, props.atHome ? "Home" : "Away")));
+exports.default = UserCardBottom;
 
 
 /***/ })
