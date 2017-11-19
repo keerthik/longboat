@@ -8,28 +8,41 @@ interface IUserProps extends IUser {
     onUserClick:(UUID: string) => void,
 }
 
-const UserCard = (props: IUserProps) => {
-    const style = {
+const style = {
+    top: {
+        flex: 3,
+        backgroundSize: "100%",
+    },
+    outer: {
         height: "300px",
         width: "300px",
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
         fontSize: "30px"
-    };
+    }
+};
 
-    const topStyle = {
-        flex: 3,
-        backgroundImage: (props.imageURI ? `url(${props.imageURI})` : null),
-        backgroundSize: "100%",
+class UserCard extends React.Component<IUserProps, {}> {
+    constructor(props: IUserProps) {
+        super(props);
     }
 
-    return (
-        <Card style={style} onCardClick={() => {props.onUserClick(props.UUID)}}>
-            <CardSection style={topStyle}>
-            </CardSection> 
-            <UserCardBottom name={props.name} atHome={props.atHome}/>
-        </Card>
-    )
+    public render() {
+        return (
+            <Card style={style.outer} onCardClick={() => { this.props.onUserClick(this.props.UUID) }}>
+                <CardSection 
+                    style={{ ...style.top,
+                        backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null)
+                    }}
+                />
+                <UserCardBottom name={this.props.name} atHome={this.props.atHome} />
+            </Card>
+        );
+    }
+};
+
+(props: IUserProps) => {
+    
 };
 
 export default UserCard;
