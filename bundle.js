@@ -18935,10 +18935,10 @@ class UserListContainer extends React.Component {
                     users[u.UUID] = u;
                 });
                 console.log(`Processed users: ${JSON.stringify(users)}`);
-                this.setState((prevState) => ({
+                this.setState({
                     users,
                     loading: false
-                }));
+                });
                 console.log(`Fetched users: ${JSON.stringify(users)}`);
             }
             catch (err) {
@@ -18949,7 +18949,7 @@ class UserListContainer extends React.Component {
     fetchUsers() {
         return __awaiter(this, void 0, void 0, function* () {
             console.log('Fetching users');
-            const users = yield api_1.getUsers();
+            const users = yield api_1.getUsersAPI();
             return users.data;
         });
     }
@@ -18958,19 +18958,19 @@ class UserListContainer extends React.Component {
             console.log(`Clicked user: ${UUID}`);
             const user = this.state.users[UUID];
             user.atHome = !(user.atHome);
+            this.setUserState(user); // Optimistically set state
             try {
-                yield api_1.setUser(user);
+                yield api_1.setUserAPI(user);
                 console.log(`Successfully toggled user: ${user.UUID}`);
-                this.setState((prevState) => {
-                    const state = Object.assign({}, prevState);
-                    state.users[user.UUID] = user;
-                    return state;
-                });
             }
             catch (err) {
-                console.log(err);
+                console.log(`User didn't properly set in API, with err: ${err}`);
+                this.setUserState(user);
             }
         });
+    }
+    render() {
+        return (React.createElement("div", null, this.state.loading ? this.renderLoading() : this.renderUsers()));
     }
     renderLoading() {
         return ('THIS SHIT IS LOADING!');
@@ -18980,8 +18980,12 @@ class UserListContainer extends React.Component {
             .map((UUID) => (this.state.users[UUID]))
             .map((u) => (React.createElement(UserCard_1.default, Object.assign({}, u, { onUserClick: this.toggleUserState, key: u.UUID })))));
     }
-    render() {
-        return (React.createElement("div", null, this.state.loading ? this.renderLoading() : this.renderUsers()));
+    setUserState(user) {
+        this.setState((prevState) => {
+            const state = Object.assign({}, prevState);
+            state.users[user.UUID] = user;
+            return state;
+        });
     }
 }
 exports.default = UserListContainer;
@@ -19004,8 +19008,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __webpack_require__(37);
 const Constants_1 = __webpack_require__(56);
-exports.getUsers = () => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.get(Constants_1.LONGBOAT_API_ENDPOINT)); });
-exports.setUser = (user) => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.post(Constants_1.LONGBOAT_API_ENDPOINT, { user: Object.assign({}, user, { house: "longboat" }) })); });
+exports.getUsersAPI = () => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.get(Constants_1.LONGBOAT_API_ENDPOINT)); });
+exports.setUserAPI = (user) => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.post(Constants_1.LONGBOAT_API_ENDPOINT, { user: Object.assign({}, user, { house: "longboat" }) })); });
 
 
 /***/ }),
@@ -19919,22 +19923,31 @@ const React = __webpack_require__(2);
 const Card_1 = __webpack_require__(58);
 const CardSection_1 = __webpack_require__(21);
 const UserCardBottom_1 = __webpack_require__(59);
-const UserCard = (props) => {
-    const style = {
+const style = {
+    top: {
+        flex: 3,
+        backgroundSize: "100%",
+    },
+    outer: {
         height: "300px",
         width: "300px",
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
         fontSize: "30px"
-    };
-    const topStyle = {
-        flex: 3,
-        backgroundImage: (props.imageURI ? `url(${props.imageURI})` : null),
-        backgroundSize: "100%",
-    };
-    return (React.createElement(Card_1.default, { style: style, onCardClick: () => { props.onUserClick(props.UUID); } },
-        React.createElement(CardSection_1.default, { style: topStyle }),
-        React.createElement(UserCardBottom_1.default, { name: props.name, atHome: props.atHome })));
+    }
+};
+class UserCard extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (React.createElement(Card_1.default, { style: style.outer, onCardClick: () => { this.props.onUserClick(this.props.UUID); } },
+            React.createElement(CardSection_1.default, { style: Object.assign({}, style.top, { backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null) }) }),
+            React.createElement(UserCardBottom_1.default, { name: this.props.name, atHome: this.props.atHome })));
+    }
+}
+;
+(props) => {
 };
 exports.default = UserCard;
 
