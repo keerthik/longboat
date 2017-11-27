@@ -19931,15 +19931,14 @@ const style = {
     outer: {
         height: "300px",
         width: "300px",
+        // transition: "scale 1000ms ease-in "
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
-        fontSize: "30px"
+        fontSize: "30px",
+        transform: "scale(0.5, 0.5, 0.5)"
     }
 };
 class UserCard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (React.createElement(Card_1.default, { style: style.outer, onCardClick: () => { this.props.onUserClick(this.props.UUID); } },
             React.createElement(CardSection_1.default, { style: Object.assign({}, style.top, { backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null) }) }),
