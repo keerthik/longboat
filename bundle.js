@@ -22017,15 +22017,9 @@ const style = {
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
         fontSize: "30px",
-        transition: "transform 1000ms ease-in-out",
-        transform: ""
     },
-    unloaded: {
-        transform: "scale(0.5)"
-    },
-    loaded: {
-        transform: "scale(1)"
-    }
+    unloaded: {},
+    loaded: {}
 };
 class UserCard extends React.Component {
     constructor(props) {
@@ -22041,7 +22035,7 @@ class UserCard extends React.Component {
     }
     render() {
         const cardStyle = Object.assign({}, style.outer);
-        cardStyle.transform = this.state.loaded ? style.loaded.transform : style.unloaded.transform;
+        // cardStyle.transform = this.state.loaded ? style.loaded.transform : style.unloaded.transform;
         console.log("HI");
         return (React.createElement(Card_1.default, { style: cardStyle, onCardClick: () => { this.props.onUserClick(this.props.UUID); } },
             React.createElement(CardSection_1.default, { style: Object.assign({}, style.top, { backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null) }) }),
