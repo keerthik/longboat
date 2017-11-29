@@ -2,6 +2,8 @@ import * as React from "react";
 import { getUsersAPI, setUserAPI } from "../api";
 import IUser from "../interfaces/IUser";
 import UserCard from "../components/UserCard";
+import AddUserForm from "../components/AddUserForm";
+
 interface IUserListContainerState {
     users: {[UUID:string]: IUser};
     loading: boolean;
@@ -62,10 +64,30 @@ class UserListContainer extends React.Component<{}, IUserListContainerState> {
         }
     }
 
+    public async addUser(user: {name: string, guestOfUUID: string}) {
+        const newUser: IUser = {
+            name: user.name,
+            guestOfUUID: user.guestOfUUID,
+            atHome: true,
+            homeOwner: false,
+            UUID: String(Math.floor(Math.random() * Number("0xFFFFFFFF")))
+        }
+        
+        console.log(`Tryna add that user: ${JSON.stringify(newUser)}`)
+        try {
+            await setUserAPI(newUser)
+            console.log("Succesfully added user")
+            await this.fetchUsers();
+        } catch (err) {
+            console.log(`Error adding user: ${JSON.stringify(err)}`);
+        }
+    }
+
     public render() {
         return (
             <div>
                 {this.state.loading ? this.renderLoading(): this.renderUsers()}
+                <AddUserForm users={Object.values(this.state.users)} onSubmit={this.addUser}/>
             </div>
         )
     }

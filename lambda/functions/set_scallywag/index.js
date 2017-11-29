@@ -12,13 +12,7 @@ exports.handle = (event, context, callback) => {
     const user = event.user;
     const params = {
         TableName: user.house,
-        Item: {
-            name: user.name,
-            UUID: user.UUID,
-            host: user.host,
-            atHome: user.atHome,
-            imageURI: user.imageURI
-        }
+        Item: user
     };
 
     console.log(`Putting event: ${JSON.stringify(params)}`);
