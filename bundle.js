@@ -21006,7 +21006,7 @@ class UserListContainer extends React.Component {
     }
     componentWillMount() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.updateUserState();
+            yield this.updateUserState();
         });
     }
     updateUserState() {
