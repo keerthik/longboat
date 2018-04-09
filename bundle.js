@@ -2132,15 +2132,14 @@ exports.setUserAPI = (user) => __awaiter(this, void 0, void 0, function* () { re
 exports.uploadImageAPI = (image) => __awaiter(this, void 0, void 0, function* () {
     const reader = new FileReader();
     reader.readAsDataURL(image);
-    reader.onload = () => {
-        const result = reader.result.split(',')[1];
-        console.log(result);
-        return (axios_1.default.post(Constants_1.IMAGES_ENDPOINT, result, {
-            headers: {
-                'Content-Type': image.type
-            }
-        }));
-    };
+    return new Promise((resolve1) => {
+        reader.onload = () => {
+            const readFile = reader.result.split(',')[1];
+            axios_1.default.post(Constants_1.IMAGES_ENDPOINT, readFile, { headers: { 'Content-Type': image.type } }).then((returnedUrl) => {
+                resolve1(returnedUrl.data);
+            });
+        };
+    });
 });
 
 
@@ -21001,17 +21000,18 @@ class UserListContainer extends React.Component {
             users: {},
             loading: true
         };
+        this.addUser = this.addUser.bind(this);
         this.toggleUserState = this.toggleUserState.bind(this);
     }
     componentWillMount() {
         return __awaiter(this, void 0, void 0, function* () {
+            this.updateUserState();
+        });
+    }
+    updateUserState() {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
-                const usersArr = yield this.fetchUsers();
-                // TODO: make this nice
-                const users = {};
-                usersArr.forEach((u) => {
-                    users[u.UUID] = u;
-                });
+                const users = yield this.fetchUsers();
                 console.log(`Processed users: ${JSON.stringify(users)}`);
                 this.setState({
                     users,
@@ -21029,7 +21029,13 @@ class UserListContainer extends React.Component {
             console.log('Fetching users');
             const users = yield api_1.getUsersAPI();
             console.log(`Got users:${JSON.stringify(users.data)}`);
-            return users.data;
+            let usersArr = users.data;
+            // TODO: make it a reduce
+            const usersMap = {};
+            usersArr.forEach((u) => {
+                users[u.UUID] = u;
+            });
+            return users;
         });
     }
     toggleUserState(UUID) {
@@ -21055,13 +21061,14 @@ class UserListContainer extends React.Component {
                 guestOfUUID: user.guestOfUUID,
                 atHome: true,
                 homeOwner: false,
-                UUID: String(Math.floor(Math.random() * Number("0xFFFFFFFF")))
+                UUID: String(Math.floor(Math.random() * Number("0xFFFFFFFF"))),
+                imageURI: user.imageURI
             };
             console.log(`Tryna add that user: ${JSON.stringify(newUser)}`);
             try {
                 yield api_1.setUserAPI(newUser);
                 console.log("Succesfully added user");
-                yield this.fetchUsers();
+                yield this.updateUserState();
             }
             catch (err) {
                 console.log(`Error adding user: ${JSON.stringify(err)}`);
@@ -22017,9 +22024,15 @@ const style = {
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
         fontSize: "30px",
+        transition: "transform 1000ms ease-in-out",
+        transform: ""
     },
-    unloaded: {},
-    loaded: {}
+    unloaded: {
+        transform: "scale(0.5)"
+    },
+    loaded: {
+        transform: "scale(1)"
+    }
 };
 class UserCard extends React.Component {
     constructor(props) {
@@ -22035,7 +22048,7 @@ class UserCard extends React.Component {
     }
     render() {
         const cardStyle = Object.assign({}, style.outer);
-        // cardStyle.transform = this.state.loaded ? style.loaded.transform : style.unloaded.transform;
+        cardStyle.transform = this.state.loaded ? style.loaded.transform : style.unloaded.transform;
         console.log("HI");
         return (React.createElement(Card_1.default, { style: cardStyle, onCardClick: () => { this.props.onUserClick(this.props.UUID); } },
             React.createElement(CardSection_1.default, { style: Object.assign({}, style.top, { backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null) }) }),
@@ -22128,25 +22141,22 @@ const react_form_1 = __webpack_require__(136);
 const api_1 = __webpack_require__(59);
 const React = __webpack_require__(4);
 class AddUserForm extends React.Component {
-    usersToOptions(users) {
-        return users
-            .filter((user) => (user.homeOwner))
-            .map((user) => ({ label: user.name, value: user.UUID }));
+    componentDidMount() {
+        this.onSubmit = this.onSubmit.bind(this);
     }
     onSubmit(submittedValues) {
-        console.log('submitted vals:');
-        console.log(submittedValues);
-        this.props.onSubmit({ name: submittedValues.name, guestOfUUID: submittedValues.guestOf });
+        return __awaiter(this, void 0, void 0, function* () {
+            const image = this.state.picture;
+            const res = yield api_1.uploadImageAPI(image);
+            // TODO: Error handling...
+            this.setState({ picture: res });
+            this.props.onSubmit({ name: submittedValues.name, guestOfUUID: submittedValues.guestOf, imageURI: this.state.picture });
+        });
     }
     onAddPicture(event, formApi) {
         return __awaiter(this, void 0, void 0, function* () {
             const file = event.target.files[0];
-            console.log(file);
             this.setState({ picture: file });
-            console.log("Tryna upload pic...");
-            const res = yield api_1.uploadImageAPI(file);
-            console.log('Done');
-            console.log(res);
         });
     }
     render() {
@@ -22159,6 +22169,11 @@ class AddUserForm extends React.Component {
             React.createElement("label", { htmlFor: "profilePicture" }),
             React.createElement("input", { type: "file", accept: "image/*", onChange: (event) => this.onAddPicture(event, formApi) }),
             React.createElement("button", { type: "submit" }, " Join L o n g b  o   a    t")))));
+    }
+    usersToOptions(users) {
+        return users
+            .filter((user) => (user.homeOwner))
+            .map((user) => ({ label: user.name, value: user.UUID }));
     }
 }
 exports.default = AddUserForm;
