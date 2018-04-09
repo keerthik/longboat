@@ -21034,7 +21034,7 @@ class UserListContainer extends React.Component {
             // TODO: make it a reduce
             const usersMap = {};
             usersArr.forEach((u) => {
-                users[u.UUID] = u;
+                usersMap[u.UUID] = u;
             });
             return usersMap;
         });
