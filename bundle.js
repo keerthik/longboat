@@ -2127,6 +2127,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __webpack_require__(112);
 const Constants_1 = __webpack_require__(131);
+// TODO: Add error handling in all these methods
 exports.getUsersAPI = () => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.get(Constants_1.SCALLYWAG_ENDPOINT)); });
 exports.setUserAPI = (user) => __awaiter(this, void 0, void 0, function* () { return (axios_1.default.post(Constants_1.SCALLYWAG_ENDPOINT, { user: Object.assign({}, user, { house: "longboat" }) })); });
 exports.uploadImageAPI = (image) => __awaiter(this, void 0, void 0, function* () {
@@ -21035,7 +21036,7 @@ class UserListContainer extends React.Component {
             usersArr.forEach((u) => {
                 users[u.UUID] = u;
             });
-            return users;
+            return usersMap;
         });
     }
     toggleUserState(UUID) {
