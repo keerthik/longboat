@@ -2389,6 +2389,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
 const style = {
     flex: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderTop: "1px #f8f8f8 solid",
 };
 const CardSection = (props) => (React.createElement("div", { style: Object.assign({}, style, props.style) }, props.children));
 exports.default = CardSection;
@@ -20992,6 +20997,12 @@ const React = __webpack_require__(2);
 const api_1 = __webpack_require__(113);
 const UserCard_1 = __webpack_require__(134);
 const AddUserForm_1 = __webpack_require__(137);
+const style = {
+    container: {
+        display: "flex",
+        justifyContent: "center"
+    }
+};
 class UserListContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -21092,7 +21103,7 @@ class UserListContainer extends React.Component {
     }
     render() {
         return (React.createElement("div", null,
-            this.state.loading ? this.renderLoading() : this.renderUsers(),
+            React.createElement("div", { style: style.container }, this.state.loading ? this.renderLoading() : this.renderUsers()),
             React.createElement(AddUserForm_1.default, { users: Object.values(this.state.users), onSubmit: this.uploadImageThenAddUser })));
     }
     renderLoading() {
@@ -22064,17 +22075,18 @@ const UserCardBottom_1 = __webpack_require__(136);
 const style = {
     top: {
         flex: 3,
-        backgroundSize: "100%",
+        backgroundSize: "cover",
     },
     outer: {
-        height: "300px",
+        height: "400px",
         width: "300px",
         // transition: "scale 1000ms ease-in "
         backgroundColor: "#e1e5ed",
         fontFamily: "comfortaa",
         fontSize: "30px",
         transition: "transform 1000ms ease-in-out",
-        transform: ""
+        transform: "",
+        margin: "12.5px"
     },
     unloaded: {
         transform: "scale(0.5)"
@@ -22101,11 +22113,24 @@ class UserCard extends React.Component {
         console.log("HI");
         return (React.createElement(Card_1.default, { style: cardStyle, onCardClick: () => { this.props.onUserClick(this.props.UUID); } },
             React.createElement(CardSection_1.default, { style: Object.assign({}, style.top, { backgroundImage: (this.props.imageURI ? `url(${this.props.imageURI})` : null) }) }),
-            React.createElement(UserCardBottom_1.default, { name: this.props.name, atHome: this.props.atHome })));
+            React.createElement(UserCardBottom_1.default, { name: this.props.name, atHome: this.props.atHome }),
+            React.createElement(UserCardExtraInfo, null)));
     }
 }
 ;
-(props) => {
+const UserCardExtraInfo = () => {
+    const style = {
+        flex: 0.75,
+        fontSize: "16px",
+        display: "flex",
+        justifyContent: "space-around"
+    };
+    return (React.createElement(CardSection_1.default, { style: style },
+        React.createElement("div", null,
+            "Seen at:",
+            React.createElement("br", null),
+            "12:53am"),
+        React.createElement("div", null, "173 visits")));
 };
 exports.default = UserCard;
 
@@ -22126,7 +22151,6 @@ const style = {
     display: "inline-flex",
     margin: "20px",
     position: "relative",
-    flex: 1,
     flexDirection: "column",
     overflow: "hidden"
 };
@@ -22153,9 +22177,7 @@ const style = {
         justifyContent: "center"
     },
     name: {
-        // display: "flex",
-        // flex:1,
-        color: "#d3d3d3",
+        color: "rgb(92, 92, 92)",
         whiteSpace: "pre-wrap"
     },
     homeStatus: {},
